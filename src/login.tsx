@@ -1,16 +1,19 @@
 import './login.css'
 import { useTranslation } from "react-i18next";
-import { useState } from 'react';
+
 
 function Login() {
 
-  const { i18n: {changeLanguage, language} } = useTranslation();
- const [currentLanguage, setCurrentLanguage] = useState(language)
- const handleChangeLanguage = () => {
-   const newLanguage = currentLanguage === "en" ? "fa" : "en";
-   setCurrentLanguage(newLanguage);
-   changeLanguage(newLanguage);
- }
+
+  const { t, i18n } = useTranslation();
+
+
+const toggleLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const lang = e.target.value === "0" ? "en" : "fa";
+    i18n.changeLanguage(lang);
+};
+
+
 
     return (
         <div>
@@ -19,9 +22,9 @@ function Login() {
 
                 <div className="form">
                     <form action="">
-                        <label htmlFor="Login">Login</label>
-                        <input type="text" name="name" id="name" placeholder='Enter Your Name' />
-                        <input type="submit" value="LOGIN" />
+                        <label htmlFor="Login">{t("login")}</label>
+                        <input type="text" name="name" id="name" placeholder={t("loginPlaceholder")} />
+                        <input type="submit" value={t("loginBtn")} />
                     </form>
                 </div>
 
@@ -30,8 +33,14 @@ function Login() {
 
                 </div>
             </div>
-
-            <button type="button"  onClick={handleChangeLanguage}> Change Language </button>
+           <div>
+                <label htmlFor="language">{t("lan")}</label>
+                <select  id="language" onChange={toggleLanguage} defaultValue={i18n.language}>
+                    <option value="0">{t("lanEn")}</option>
+                    <option value="1">{t("lanFa")}</option>
+                </select>
+            </div>
+            {/* <button type="button"  onClick={toggleLanguage}> Change Language </button> */}
 
         </div>
     )
