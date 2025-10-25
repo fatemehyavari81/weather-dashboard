@@ -1,9 +1,17 @@
-#root, body, html {
+@font-face {
+  font-family: "BYekan";
+  src: url("/fonts/b-yekan.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap; /* optional but recommended */
+}
+
+/* fallback fonts for when BYekan isn't used */
+html, body, #root {
   height: 100%;
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 

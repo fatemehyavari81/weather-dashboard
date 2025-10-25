@@ -1,4 +1,4 @@
-import React from "react";
+import {useEffect} from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -11,7 +11,11 @@ interface ForecastCardProps {
 
 const ForecastCard: React.FC<ForecastCardProps> = ({ day, icon, temp }) => {
   const theme = useTheme();
-  const { t } = useTranslation();
+  const { t , i18n} = useTranslation();
+
+   useEffect(() => {
+
+}, [i18n.language]);
 
 
   return (

@@ -1,20 +1,3 @@
-// import axios from "axios";
-// import type{ WeatherData } from "../types/weather";
-
-// const API_KEY = "beabc52ea46bfc195ea5090f3d12d952";
-
-// export const fetchCurrentWeather = async (
-//   city: string,
-//   lang: string
-// ): Promise<WeatherData> => {
-//   const { data } = await axios.get<WeatherData>(
-//     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=${lang}`
-
-//   );
-//   return data;
-// };
-
-
 
 import axios from "axios";
 import type { WeatherData } from "../types/weather";
@@ -57,9 +40,9 @@ export const fetchCurrentWeather = async (
     date: formattedDate,
     time: time,
     temp: `${Math.round(data.main.temp)}°C`,
-    high: `${Math.round(data.main.temp_max)}°C`,
-    low: `${Math.round(data.main.temp_min)}°C`,
-    feelsLike: `${Math.round(data.main.feels_like)}°C`,
+    high: `${Math.round(data.main.temp_max)}`,
+    low: `${Math.round(data.main.temp_min)}`,
+    feelsLike: `${Math.round(data.main.feels_like)}`,
     condition: data.weather[0].description,
     icon,
   };

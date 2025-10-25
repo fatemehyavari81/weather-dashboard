@@ -1,10 +1,14 @@
 import React from "react";
 import { Box, Stack, Typography, useTheme } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 import cloudyIcon from "../assets/icon/cloudy.png";
 import sunnyIcon from "../assets/icon/sunny.png";
 import rainCloudIcon from "../assets/icon/rainCloud.png";
 import stormIcon from "../assets/icon/storm.png";
+
+import { FaMapMarkerAlt } from "react-icons/fa";
+
 
 type WeatherCardProps = {
   city: string;
@@ -26,20 +30,11 @@ const iconMap = {
   storm: stormIcon,
 };
 
-const WeatherCard: React.FC<WeatherCardProps> = ({
-  city,
-  day,
-  date,
-  time,
-  temp,
-  high,
-  low,
-  feelsLike,
-  condition,
-  icon,
-}) => {
+const WeatherCard: React.FC<WeatherCardProps> = ({ city, day, date, time, temp, high, low, feelsLike, condition, icon,}) => {
   const theme = useTheme();
   const selectedIcon = iconMap[icon];
+    const { t } = useTranslation();
+
 
   return (
     <Box
@@ -48,82 +43,91 @@ const WeatherCard: React.FC<WeatherCardProps> = ({
         borderRadius: "24px",
         p: 4,
         display: "flex",
-        flexDirection: "column",
-        gap: 3,
+        gap: 20,
       }}
     >
-      {/* Location */}
-      <Stack direction="row" justifyContent="space-between" alignItems="center">
-        <Typography
-          variant="h5"
-          fontWeight={600}
-          sx={{ color: theme.palette.text.primary }}
-        >
-          {city}
-        </Typography>
-      </Stack>
-
-      {/* Day + Date */}
-      <Stack direction="row" justifyContent="space-between">
-        <Typography
-          variant="subtitle1"
-          sx={{ color: theme.palette.text.secondary }}
-        >
-          {day}
-        </Typography>
-
-        <Typography
-          variant="subtitle1"
-          sx={{ color: theme.palette.text.secondary }}
-        >
-          {date} | {time}
-        </Typography>
-      </Stack>
-
-      {/* Main Weather Info */}
-      <Stack direction="row" alignItems="center" justifyContent="space-between">
         <Stack>
-          <Typography
-            variant="h2"
-            fontWeight={700}
-            sx={{ color: theme.palette.text.primary }}
-          >
-            {temp}
-          </Typography>
+        <Stack>
+            <Box
+                sx={{
+                display: "flex",
+                alignItems: "center",
+                background: "#CDD9E0",
+                width: 146,
+                height: 30,
+                opacity: 1,
+                gap: "12px",
+                borderRadius: "50px",
+                padding: "10px 12px",
+                color: theme.palette.text.primary
+                }}
+            >
+                <FaMapMarkerAlt />
+                <Typography  fontWeight={200}>
+                {city}
+                </Typography>
+            </Box>
+        </Stack>
+        <Stack>
 
-          <Typography
-            variant="h6"
-            fontWeight={500}
-            sx={{ color: theme.palette.text.secondary }}
-          >
-            High: {high} | Low: {low}
-          </Typography>
+            <Typography
+            variant="h4">
+            {day}
+            </Typography>
 
-          <Typography
-            variant="body1"
-            mt={1}
-            sx={{ color: theme.palette.text.secondary }}
-          >
-            Feels Like: {feelsLike}
-          </Typography>
+            <Typography
+            variant="subtitle1"
+            sx={{display: "flex",justifyContent:" flex-start", gap:"20px", color: theme.palette.text.secondary }}
+            >
+                <p>{date}</p>
+                <p>{time}</p>
+            </Typography>
         </Stack>
 
-        <Box
-          component="img"
-          src={selectedIcon}
-          alt={condition}
-          sx={{ width: 120, height: 120, objectFit: "contain" }}
-        />
-      </Stack>
+        <Stack>
+            <Typography
+                variant="h4"
+                fontWeight={400}
+                sx={{ color: theme.palette.text.primary }}
+            >
+                {temp}
+            </Typography>
 
-      {/* Condition */}
-      <Typography
-        variant="h6"
-        fontWeight={500}
-        sx={{ color: theme.palette.text.primary, textAlign: "center" }}
-      >
-        {condition}
-      </Typography>
+            <Typography
+                variant="subtitle1"
+                fontWeight={400}
+                sx={{ color: theme.palette.text.secondary }}
+            >
+                {t("maxTemp")}: {high}   {t("minTemp")}: {low}
+            </Typography>
+
+        </Stack>
+
+
+        </Stack>
+        <Stack sx={{display: "flex", }}>
+            <Box
+            component="img"
+            src={selectedIcon}
+            alt={condition}
+            sx={{ width: 150, height: 150, objectFit: "contain" }}
+            />
+
+            <Typography
+                variant="h6"
+                fontWeight={400}
+                sx={{ color: theme.palette.text.primary, textAlign: "center" }}
+            >
+                {condition}
+            </Typography>
+            <Typography
+                variant="h6"
+                fontWeight={400}
+                sx={{ color: theme.palette.text.primary, textAlign: "center" }}
+            >
+                {t("feelsLike")}{feelsLike}
+            </Typography>
+        </Stack>
     </Box>
   );
 };

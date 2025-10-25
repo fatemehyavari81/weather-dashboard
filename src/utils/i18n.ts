@@ -31,7 +31,10 @@ i18n
           "thursday": "Thu",
           "friday": "Fri",
           "saturday": "Sat",
-          "sunday": "Sun"
+          "sunday": "Sun",
+          "maxTemp" : "High",
+          "minTemp": "Low",
+          "feelsLike" : "Feels Like"
 
 
 
@@ -56,7 +59,11 @@ i18n
           "thursday": "پنج‌شنبه",
           "friday": "جمعه",
           "saturday": "شنبه",
-          "sunday": "یکشنبه"
+          "sunday": "یکشنبه",
+          "maxTemp" : "بیشینه",
+          "minTemp": "کمینه",
+          "feelsLike" : " درجه احساس می شود"
+
         }
         },
     },
