@@ -1,17 +1,44 @@
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+// import Login from "../pages/Login";
+// import Dashboard from "../pages/Dashboard";
+
+// const AppRoutes = () => {
+//   return (
+//     <BrowserRouter>
+//       <Routes>
+//         <Route path="/" element={<Login />} />
+//         <Route path="/dashboard" element={<Dashboard />} />
+//       </Routes>
+//     </BrowserRouter>
+//   );
+// };
+
+// export default AppRoutes;
+
+
+// src/routes/AppRoutes.tsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
+import type { ThemeMode } from "../theme";
 
-const AppRoutes = () => {
+interface AppRoutesProps {
+  currentMode: ThemeMode;
+  setMode: (m: ThemeMode) => void;
+}
+
+const AppRoutes: React.FC<AppRoutesProps> = ({ currentMode, setMode }) => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard currentMode={currentMode} setMode={setMode} />}
+        />
       </Routes>
     </BrowserRouter>
   );
 };
 
 export default AppRoutes;
-

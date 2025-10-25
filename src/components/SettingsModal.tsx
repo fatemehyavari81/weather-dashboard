@@ -1,29 +1,26 @@
-// src/components/SettingsModal.tsx
 import React from "react";
 import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogActions,
-  Button,
+  Popover,
   Box,
   Typography,
   IconButton,
   ToggleButton,
   ToggleButtonGroup,
+  Button,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 type Props = {
-  open: boolean;
+  anchorEl: HTMLElement | null; // <-- instead of open:boolean
   onClose: () => void;
   currentMode: "light" | "dark";
   setMode: (m: "light" | "dark") => void;
 };
 
-const SettingsModal: React.FC<Props> = ({ open, onClose, currentMode, setMode }) => {
+const SettingsPopover: React.FC<Props> = ({ anchorEl, onClose, currentMode, setMode }) => {
+  const open = Boolean(anchorEl);
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
@@ -32,86 +29,85 @@ const SettingsModal: React.FC<Props> = ({ open, onClose, currentMode, setMode })
   };
 
   const handleExit = () => {
-    // Clear auth/localStorage as needed
     localStorage.removeItem("username");
     onClose();
-    navigate("/"); // back to login
+    navigate("/");
   };
 
   const handleModeChange = (_: React.MouseEvent<HTMLElement>, value: "light" | "dark" | null) => {
     if (value) setMode(value);
   };
 
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="xs">
-      <DialogTitle sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        {t("settingsTitle") || "Settings"}
-        <IconButton aria-label="close" onClick={onClose} size="small">
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
+    <Popover
+      open={open}
+      anchorEl={anchorEl}
+      onClose={onClose}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'right',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'right',
+      }}
+      PaperProps={{ sx: { p: 2, width: 260, borderRadius: 3 } }}
+    >
+      {/* Header */}
+      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+        <Typography variant="subtitle1">{t("settingsTitle") || "Settings"}</Typography>
+        <IconButton size="small" onClick={onClose}><CloseIcon /></IconButton>
+      </Box>
 
-      <DialogContent dividers>
-        {/* Mode */}
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-            {t("mode") || "Mode"}
-          </Typography>
-          <ToggleButtonGroup
-            value={currentMode}
-            exclusive
-            onChange={handleModeChange}
-            aria-label="mode"
+      {/* Mode */}
+      <Box sx={{ mb: 3 }}>
+        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+          {t("mode") || "Mode"}
+        </Typography>
+        <ToggleButtonGroup
+          value={currentMode}
+          exclusive
+          onChange={handleModeChange}
+          size="small"
+        >
+          <ToggleButton value="light" > {t("light") || "Light"} </ToggleButton>
+          <ToggleButton value="dark"> {t("dark") || "Dark"}</ToggleButton>
+        </ToggleButtonGroup>
+      </Box>
+
+      {/* Language */}
+      <Box sx={{ mb: 3 }}>
+        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+          {t("language") || "Language"}
+        </Typography>
+        <Box sx={{ display: "flex", gap: 1 }}>
+          <Button
+            variant={i18n.language === "en" ? "contained" : "outlined"}
             size="small"
+            onClick={() => handleLang("en")}
           >
-            <ToggleButton value="light" aria-label="light">
-              ☀ {t("light") || "Light"}
-            </ToggleButton>
-            <ToggleButton value="dark" aria-label="dark">
-              🌙 {t("dark") || "Dark"}
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </Box>
-
-        {/* Language */}
-        <Box sx={{ mb: 3 }}>
-          <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-            {t("language") || "Language"}
-          </Typography>
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <Button
-              variant={i18n.language === "en" ? "contained" : "outlined"}
-              size="small"
-              onClick={() => handleLang("en")}
-            >
-              EN
-            </Button>
-            <Button
-              variant={i18n.language === "fa" ? "contained" : "outlined"}
-              size="small"
-              onClick={() => handleLang("fa")}
-            >
-              FA
-            </Button>
-          </Box>
-        </Box>
-
-        {/* Exit */}
-        <Box>
-          <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-            {t("exit") || "Exit"}
-          </Typography>
-          <Button variant="outlined" color="error" startIcon={<span>↩</span>} onClick={handleExit}>
-            {t("exit") || "Exit"}
+            EN
+          </Button>
+          <Button
+            variant={i18n.language === "fa" ? "contained" : "outlined"}
+            size="small"
+            onClick={() => handleLang("fa")}
+          >
+            FA
           </Button>
         </Box>
-      </DialogContent>
+      </Box>
 
-      <DialogActions>
-        <Button onClick={onClose}>{t("close") || "Close"}</Button>
-      </DialogActions>
-    </Dialog>
+      {/* Exit */}
+      <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+        {t("exit") || "Exit"}
+      </Typography>
+      <Button variant="outlined" color="error" fullWidth onClick={handleExit}>
+        ↩ {t("exit") || "Exit"}
+      </Button>
+    </Popover>
   );
 };
 
-export default SettingsModal;
+export default SettingsPopover;

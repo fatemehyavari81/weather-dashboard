@@ -1,69 +1,90 @@
 import React, { useState } from "react";
-import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Box, Switch, } from "@mui/material";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Box,
+} from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useTranslation } from "react-i18next";
-import icon from "../assets/weatherIcon.png";
-import SearchBar from "../components/SearchBar";
-
+import iconImg from "../assets/weatherIcon.png";
+import SearchBar from "./SearchBar";
+import SettingsModal from "./SettingsModal";
+import type { ThemeMode } from "../theme";
 
 interface TopBarProps {
-  darkMode: boolean;
-  toggleDarkMode: () => void;
+  currentMode: ThemeMode;
+  setMode: (m: ThemeMode) => void;
+  selectedCityKey: string;
+  onCityChange: (cityKey: string) => void;
 }
 
-const TopBar: React.FC<TopBarProps> = ({ darkMode, toggleDarkMode }) => {
+const TopBar: React.FC<TopBarProps> = ({
+  currentMode,
+  setMode,
+  selectedCityKey,
+  onCityChange,
+}) => {
   const { t, i18n } = useTranslation();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
 
-  const handleSettingsClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const handleOpen = (e: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(e.currentTarget);
   };
-  const handleClose = () => setAnchorEl(null);
 
-  const switchLanguage = (lang: "en" | "fa") => {
-    i18n.changeLanguage(lang);
-    handleClose();
+  const handleClose = () => {
+    setAnchorEl(null);
   };
-  const handleSearch = (newCity: string) => setCity(newCity);
-
 
   return (
-    <AppBar position="static" color="transparent" elevation={0}>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
-        {/* Left: Logo + title */}
-        <Typography  fontWeight={600} sx={{display: "flex", alignItems: "center", gap:"10px"}}>
-            <img src={icon} alt="icon" width={"56px"} height={"56px"} style={{ borderRadius: '50%' }}/>
-            <h3>{t("WeatherDashboard")}</h3>
-
-        </Typography>
-
-        {/* Right: Settings */}
-        <Box>
-          <IconButton onClick={handleSettingsClick}>
-            <SettingsIcon />
-          </IconButton>
-          <Menu
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-          >
-            <MenuItem>
-              Mode:
-              <Switch checked={darkMode} onChange={toggleDarkMode} />
-            </MenuItem>
-            <MenuItem onClick={() => switchLanguage("en")}>EN</MenuItem>
-            <MenuItem onClick={() => switchLanguage("fa")}>FA</MenuItem>
-            <MenuItem onClick={() => (window.location.href = "/")}>
-              Exit
-            </MenuItem>
-          </Menu>
-          <Box my={3}>
-            <SearchBar onSearch={handleSearch} />
+    <>
+      <AppBar position="static" color="transparent" elevation={0}>
+        <Toolbar
+          sx={{
+            justifyContent: "space-between",
+            gap: 2,
+            flexWrap: "wrap",
+            alignItems: "center",
+          }}
+          dir={i18n.language === "fa" ? "rtl" : "ltr"}
+        >
+          <Box display="flex"  alignItems="center" gap={2}>
+            <img
+              src={iconImg}
+              alt="logo"
+              style={{ width: 56, height: 56, borderRadius: 28 }}
+            />
+            <Typography variant="h6" fontWeight={600}>
+              {t("WeatherDashboard")}
+            </Typography>
           </Box>
 
-        </Box>
-      </Toolbar>
-    </AppBar>
+          <Box display="flex"  alignItems="center" gap={10}>
+            <Box>
+              <SearchBar 
+                selectedCityKey={selectedCityKey}
+                setSelectedCityKey={onCityChange}
+              />
+            </Box>
+
+            <Box >
+
+            <IconButton onClick={handleOpen}>
+              <SettingsIcon />
+            </IconButton>
+            </Box>
+
+            <SettingsModal
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              currentMode={currentMode}
+              setMode={setMode}
+            />
+          </Box>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
 

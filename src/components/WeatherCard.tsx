@@ -41,9 +41,9 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city, day, date, time, temp, 
       sx={{
         bgcolor: "background.paper",
         borderRadius: "24px",
-        p: 4,
+        p: 5,
         display: "flex",
-        gap: 20,
+        justifyContent: "space-around",
       }}
     >
         <Stack>
