@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Box,
-} from "@mui/material";
+import  {AppBar, Toolbar, Typography, IconButton, Box,} from "@mui/material";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useTranslation } from "react-i18next";
 import iconImg from "../assets/weatherIcon.png";
@@ -62,7 +56,7 @@ const TopBar: React.FC<TopBarProps> = ({
 
           <Box display="flex"  alignItems="center" gap={10}>
             <Box>
-              <SearchBar 
+              <SearchBar
                 selectedCityKey={selectedCityKey}
                 setSelectedCityKey={onCityChange}
               />

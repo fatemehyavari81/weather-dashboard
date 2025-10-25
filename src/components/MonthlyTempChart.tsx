@@ -48,7 +48,6 @@ const MonthlyTempChart: React.FC = () => {
             </linearGradient>
           </defs>
 
-          {/* Only horizontal grid lines */}
           <CartesianGrid
             horizontal={true}
             vertical={false}

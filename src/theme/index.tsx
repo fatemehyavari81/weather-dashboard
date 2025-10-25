@@ -1,6 +1,3 @@
-
-
-
 import { createTheme } from "@mui/material/styles";
 
 export type ThemeMode = "light" | "dark";

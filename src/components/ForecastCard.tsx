@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 interface ForecastCardProps {
   day: string;
-  icon: string; // can use your existing weather icons
+  icon: string; 
   temp: string;
 }
 

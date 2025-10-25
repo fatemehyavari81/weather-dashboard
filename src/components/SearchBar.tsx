@@ -20,7 +20,6 @@ const SearchBar: React.FC<SearchBarProps> = ({
     "moscow", "toronto"
   ];
 
-  // Load from localStorage only if parent hasn't set a value yet
   useEffect(() => {
     if (!selectedCityKey) {
       const savedCity = localStorage.getItem("selectedCityKey");

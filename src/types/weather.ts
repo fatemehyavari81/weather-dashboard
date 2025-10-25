@@ -5,7 +5,7 @@ export interface WeatherData {
   day: string;
   date: string;
   time: string;
-  temp: string; // Already Celsius, per your requirement
+  temp: string; 
   high: string;
   low: string;
   feelsLike: string;

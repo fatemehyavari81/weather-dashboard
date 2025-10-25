@@ -24,7 +24,6 @@ export const fetchCurrentWeather = async (
     minute: "2-digit",
   });
 
-  // icon mapping based on OpenWeather return
   const icon =
     data.weather[0].main === "Rain"
       ? "rainCloud"

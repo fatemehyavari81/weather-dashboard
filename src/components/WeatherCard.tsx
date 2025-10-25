@@ -49,18 +49,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city, day, date, time, temp, 
         <Stack>
         <Stack>
             <Box
-                sx={{
-                display: "flex",
-                alignItems: "center",
-                background: "#CDD9E0",
-                width: 146,
-                height: 30,
-                opacity: 1,
-                gap: "12px",
-                borderRadius: "50px",
-                padding: "10px 12px",
-                color: theme.palette.text.primary
-                }}
+                sx={{ display: "flex", alignItems: "center", background: "#CDD9E0", width: 146, height: 30, opacity: 1, gap: "12px", borderRadius: "50px", padding: "10px 12px", color: theme.palette.text.primary }}
             >
                 <FaMapMarkerAlt />
                 <Typography  fontWeight={200}>
