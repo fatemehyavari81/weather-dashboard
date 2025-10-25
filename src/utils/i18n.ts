@@ -20,7 +20,11 @@ i18n
           "lan" : "Language",
           "lanEn" : "English",
           "lanFa" : "Persian",
-          "footerPolicy" : "All rights of this site are reserved for Nadin Sadr Aria Engineering Company."
+          "footerPolicy" : "All rights of this site are reserved for Nadin Sadr Aria Engineering Company.",
+          "searchLabel" : "Search Your Location",
+          "WeatherDashboard" : "WeatherDashboard",
+          "contactUs" : "contact us"
+
 
 
         }
@@ -33,6 +37,10 @@ i18n
           "lan" : "زبان",
           "lanEn" : "انگلیسی",
           "lanFa" : "فارسی",
+          "searchLabel" : "مکان مورد نظر را جستجو کنید",
+          "WeatherDashboard" : "داشبورد آب و هوا",
+          "contactUs" : "تماس با ما ",
+          "footerPolicy" : "همه حقوق این سایت برای شرکت مهندسی نادین صدر آریا محفوظ است."
         }
         },
     },

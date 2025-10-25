@@ -1,16 +1,14 @@
+export type WeatherIconType = "cloudy" | "sunny" | "rainCloud" | "storm";
+
 export interface WeatherData {
-  name: string;
-  main: {
-    temp: number;
-    feels_like: number;
-    humidity: number;
-    pressure: number;
-  };
-  weather: {
-    description: string;
-    icon: string;
-  }[];
-  wind: {
-    speed: number;
-  };
+  city: string;
+  day: string;
+  date: string;
+  time: string;
+  temp: string; // Already Celsius, per your requirement
+  high: string;
+  low: string;
+  feelsLike: string;
+  condition: string;
+  icon: WeatherIconType;
 }
