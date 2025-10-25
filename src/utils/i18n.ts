@@ -20,10 +20,18 @@ i18n
           "lan" : "Language",
           "lanEn" : "English",
           "lanFa" : "Persian",
+          "forecastTitle" : "2 weeks Forecast",
           "footerPolicy" : "All rights of this site are reserved for Nadin Sadr Aria Engineering Company.",
           "searchLabel" : "Search Your Location",
           "WeatherDashboard" : "WeatherDashboard",
-          "contactUs" : "contact us"
+          "contactUs" : "contact us",
+          "monday": "Mon",
+          "tuesday": "Tue",
+          "wednesday": "Wed",
+          "thursday": "Thu",
+          "friday": "Fri",
+          "saturday": "Sat",
+          "sunday": "Sun"
 
 
 
@@ -39,8 +47,16 @@ i18n
           "lanFa" : "فارسی",
           "searchLabel" : "مکان مورد نظر را جستجو کنید",
           "WeatherDashboard" : "داشبورد آب و هوا",
+          "forecastTitle" : "پیش بینی 2 هفته",
           "contactUs" : "تماس با ما ",
-          "footerPolicy" : "همه حقوق این سایت برای شرکت مهندسی نادین صدر آریا محفوظ است."
+          "footerPolicy" : "همه حقوق این سایت برای شرکت مهندسی نادین صدر آریا محفوظ است.",
+          "monday": "دوشنبه",
+          "tuesday": "سه‌شنبه",
+          "wednesday": "چهارشنبه",
+          "thursday": "پنج‌شنبه",
+          "friday": "جمعه",
+          "saturday": "شنبه",
+          "sunday": "یکشنبه"
         }
         },
     },

@@ -10,7 +10,8 @@ import { useTranslation } from "react-i18next";
 import type { WeatherData } from "../types/weather";
 
 const Dashboard: React.FC = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
+
   const [city, setCity] = useState("Tehran");
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(false);
@@ -33,15 +34,39 @@ const Dashboard: React.FC = () => {
     if (city) getWeather();
   }, [city, i18n.language]);
 
-  const dummyForecast = [
-    { day: "Mon", icon: "/assets/icon/sunny.png", temp: "25°C" },
-    { day: "Tue", icon: "/assets/icon/cloudy.png", temp: "22°C" },
-    { day: "Wed", icon: "/assets/icon/rainCloud.png", temp: "18°C" },
-    { day: "Thu", icon: "/assets/icon/storm.png", temp: "20°C" },
-    { day: "Fri", icon: "/assets/icon/sunny.png", temp: "23°C" },
-    { day: "Sat", icon: "/assets/icon/cloudy.png", temp: "21°C" },
-    { day: "Sun", icon: "/assets/icon/rainCloud.png", temp: "19°C" },
-  ];
+//   const dummyForecast = [
+//     { day:{t("login")}, icon: "src/assets/icon/sunny.png", temp: "25°C" },
+//     { day: {t( "tuesday")}, icon: "src/assets/icon/cloudy.png", temp: "22°C" },
+//     { day: {t("wednesday")}, icon: "src/assets/icon/rainCloud.png", temp: "18°C" },
+//     { day: {t("thursday")}, icon: "src/assets/icon/storm.png", temp: "20°C" },
+//     { day: {t("friday")}, icon: "src/assets/icon/sunny.png", temp: "23°C" },
+//     { day: {t( "saturday")}, icon: "src/assets/icon/cloudy.png", temp: "21°C" },
+//     { day: {t( "sunday")}, icon: "src/assets/icon/rainCloud.png", temp: "19°C" },
+//     { day: {t("monday")}, icon: "src/assets/icon/sunny.png", temp: "25°C" },
+//     { day: {t( "tuesday")}, icon: "src/assets/icon/cloudy.png", temp: "22°C" },
+//     { day: {t("wednesday")}, icon: "src/assets/icon/rainCloud.png", temp: "18°C" },
+//     { day: {t("thursday")}, icon: "src/assets/icon/storm.png", temp: "20°C" },
+//     { day: {t("friday")}, icon: "src/assets/icon/sunny.png", temp: "23°C" },
+//     { day: {t( "saturday")}, icon: "src/assets/icon/cloudy.png", temp: "21°C" },
+//     { day: {t( "sunday")}, icon: "src/assets/icon/rainCloud.png", temp: "19°C" },
+//   ];
+
+    const dummyForecast = [
+    { day: "monday", icon: "src/assets/icon/sunny.png", temp: "25°C" },
+    { day: "tuesday", icon: "src/assets/icon/cloudy.png", temp: "22°C" },
+    { day: "wednesday", icon: "src/assets/icon/rainCloud.png", temp: "18°C" },
+    { day: "thursday", icon: "src/assets/icon/storm.png", temp: "20°C" },
+    { day: "friday", icon: "src/assets/icon/sunny.png", temp: "23°C" },
+    { day: "saturday", icon: "src/assets/icon/cloudy.png", temp: "21°C" },
+    { day: "sunday", icon: "src/assets/icon/rainCloud.png", temp: "19°C" },
+    { day: "monday", icon: "src/assets/icon/sunny.png", temp: "25°C" },
+    { day: "tuesday", icon: "src/assets/icon/cloudy.png", temp: "22°C" },
+    { day: "wednesday", icon: "src/assets/icon/rainCloud.png", temp: "18°C" },
+    { day: "thursday", icon: "src/assets/icon/storm.png", temp: "20°C" },
+    { day: "friday", icon: "src/assets/icon/sunny.png", temp: "23°C" },
+    { day: "saturday", icon: "src/assets/icon/cloudy.png", temp: "21°C" },
+    { day: "sunday", icon: "src/assets/icon/rainCloud.png", temp: "19°C" },
+    ];
 
   return (
     <Box p={3}>
@@ -78,7 +103,7 @@ const Dashboard: React.FC = () => {
       {/* 2 Weeks Forecast */}
       <Box mt={5}>
         <Typography variant="h6" mb={2}>
-          2 Weeks Forecast
+          {t("forecastTitle")}
         </Typography>
         <Stack direction="row" spacing={2} overflow="auto">
           {dummyForecast.map((f, idx) => (
