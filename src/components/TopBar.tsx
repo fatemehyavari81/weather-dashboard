@@ -31,7 +31,7 @@ const TopBar: React.FC<TopBarProps> = ({ darkMode, toggleDarkMode }) => {
     <AppBar position="static" color="transparent" elevation={0}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         {/* Left: Logo + title */}
-        <Typography variant="h6" fontWeight={600} sx={{display: "flex", alignItems: "center", gap:"10px"}}>
+        <Typography  fontWeight={600} sx={{display: "flex", alignItems: "center", gap:"10px"}}>
             <img src={icon} alt="icon" width={"56px"} height={"56px"} style={{ borderRadius: '50%' }}/>
             <h3>{t("WeatherDashboard")}</h3>
 

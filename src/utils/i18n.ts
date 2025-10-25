@@ -34,9 +34,20 @@ i18n
           "sunday": "Sun",
           "maxTemp" : "High",
           "minTemp": "Low",
-          "feelsLike" : "Feels Like"
-
-
+          "feelsLike" : "Feels Like",
+          "chartTitle" : "Average Monthly Temprature",
+          "January": "January",
+          "February": "February",
+          "March": "March",
+          "April": "April",
+          "May": "May",
+          "June": "June",
+          "July": "July",
+          "August": "August",
+          "September": "September",
+          "October": "October",
+          "November": "November",
+          "December": "December"
 
         }
       },
@@ -62,7 +73,20 @@ i18n
           "sunday": "یکشنبه",
           "maxTemp" : "بیشینه",
           "minTemp": "کمینه",
-          "feelsLike" : " درجه احساس می شود"
+          "feelsLike" : " درجه احساس می شود",
+          "chartTitle" : "میانگین دمای ماهانه",
+          "January": "فروردین",
+          "February": "اردیبهشت",
+          "March": "خرداد",
+          "April": "تیر",
+          "May": "مرداد",
+          "June": "شهریور",
+          "July": "مهر",
+          "August": "آبان",
+          "September": "آذر",
+          "October": "دی",
+          "November": "بهمن",
+          "December": "اسفند"
 
         }
         },
